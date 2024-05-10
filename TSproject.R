@@ -133,3 +133,28 @@ lines(fitted_values, col="red")
 
 # Add a legend to the plot
 legend("topright", legend=c("Original Series", "Fitted Model"), col=c("blue", "red"), lty=1)
+
+####################################
+#           step 4                 #
+####################################
+
+
+# Generate a forecast for 10 steps ahead
+forecast_10 <- forecast(best_model, h=10)
+
+# Generate a forecast for 25 steps ahead
+forecast_25 <- forecast(best_model, h=25)
+
+# Plot the original time series and the forecasts with 95% confidence intervals
+par(mfrow=c(2, 1))
+
+# Plot for h=10
+plot(forecast_10, main='10-Step Ahead Forecast with 95% CI', xlab='Time', ylab='Values', col='blue')
+lines(fitted(best_model), col='red')
+
+# Plot for h=25
+plot(forecast_25, main='25-Step Ahead Forecast with 95% CI', xlab='Time', ylab='Values', col='blue')
+lines(fitted(best_model), col='red')
+
+# Reset the graphical parameters
+par(mfrow=c(1, 1))
